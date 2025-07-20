@@ -21,7 +21,7 @@ DESIGN+= cores/dpRAM/perip_dpram.v
 DESIGN+= cores/hc_sr04/hc_sr04.v
 DESIGN+= cores/hc_sr04/perip_hc_sr04.v
 DIR_BUILD=build
-PORT=/dev/ttyUSB0
+PORT=/dev/ttyACM0
 DEVSERIAL=/dev/ttyACM0
 BAUD=57600
 # Z: Nombre para empaquetar proyecto
