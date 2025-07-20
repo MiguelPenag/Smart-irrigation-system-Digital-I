@@ -103,68 +103,61 @@ Para empezar se requieren los siguientes elementos físicos:
 
 [./build/nextpnr-SOC.log](./build/nextpnr-SOC.log)
 
-> nextpnr-SOC.log
 
-**Datos** **importantes:**<img src="./docs/Readme/5qu2taw4.png"
-style="width:4.60417in;height:1.67708in" /><img src="./qxmisw2p.png"
-style="width:7.0625in;height:1.33333in" />
+#### Datos importantes:
+**Utilización de recursos:**
+<img src="./docs/Readme/5qu2taw4.png"/>
 
-**Utilización** **de** **recursos:**
+**Frecuencia máxima del reloj y numero de Warnings:**
 
-**Frecuencia** **máxima** **del** **reloj** **y** **numero** **de**
-**Warnings:**
+<img src="./docs/Readme/qxmisw2p.png"/>
 
-**Información** **del** **Warning:**
-
+**Información del Warning:**
 Como se puede ver no existen Warnings.
 
-**Make** **log-syn:**
+### Make log-syn:
 
-> yosys-SOC.log
+[./build/yosys-SOC.log](./build/yosys-SOC.log)
 
-**Datos** **importantes:**
+#### Datos importantes:
+**1. Advertencias (Warnings)**
 
-**1.** **Advertencias** **(Warnings)**
+Se encontraron un total de 96 advertencias durante la fase de comprobación del diseño (CHECK pass). Todas las advertencias son del mismo tipo.
 
-Se encontraron un total de 96 advertencias durante la fase de
-comprobación del diseño (CHECK pass). Todas las advertencias son del
-mismo tipo.
+**Tipo de Advertencia:**  "Wire [...] is used but has no driver."
+(El cable [...] se usa pero no tiene un conductor/fuente de señal).
 
-**Tipo** **de** **Advertencia:** "Wire \[...\] is used but has no
-driver."
+Estas advertencias indican que las salidas de varios periféricos que no están implementados en el diseño (como dpram_dout, div_dout, bin2bcd_dout) están conectadas a un multiplexor, pero nunca se les asigna un valor. 
 
-(El cable \[...\] se usa pero no tiene un conductor/fuente de señal).
 
-Estas advertencias indican que las salidas de varios periféricos que no
-están implementados en el diseño (como dpram_dout, div_dout,
-bin2bcd_dout) están conectadas a un multiplexor, pero nunca se les
-asigna un valor.
+**2. Recursos lógicos sintetizados**
 
-**2.** **Recursos** **lógicos** **sintetizados**
+* **Look-Up Tables (LUTs):**
+	* SB_LUT4: 1125
 
-> **Look-Up** **Tables** **(LUTs):**
->
-> SB_LUT4: 1125
->
-> **Flip-Flops** **(Registros):** SB_DFF: 34 SB_DFFE: 135 SB_DFFER: 33
-> SB_DFFESR: 111 SB_DFFESS: 1 SB_DFFR: 3 SB_DFFSR: 18 SB_DFFSS: 4
->
-> **Total** **Flip-Flops:** **339**
->
-> **Celdas** **de** **Acarreo** **(Carry** **Cells):** SB_CARRY: 210
->
-> **Bloques** **de** **Memoria** **(RAM):** SB_RAM40_4K: 20
+* **Flip-Flops (Registros):**
+    * SB_DFF: 34
+    * SB_DFFE: 135
+    * SB_DFFER: 33
+    * SB_DFFESR: 111
+    * SB_DFFESS: 1
+    * SB_DFFR: 3
+    * SB_DFFSR: 18
+    * SB_DFFSS: 4
+    
+    * **Total Flip-Flops: 339**
 
-El diseño se ha sintetizado principalmente en 1125 LUTs para la lógica
-combinacional, 339 Flip-Flops para la lógica secuencial y ha hecho uso
-de 20 bloques de RAM para la memoria y el banco de registros.
+* **Celdas de Acarreo (Carry Cells):**
+    * SB_CARRY: 210
 
-**Interacción** **con** **aplicaciones** **externas,**
-**implementación** **y** **funcionamiento:**
+* **Bloques de Memoria (RAM):**
+    * SB_RAM40_4K: 20
 
-[<u>https://www.youtube.com/watch?v=UTR</u>Q<u>8nriFKM</u>](https://www.youtube.com/watch?v=UTRQ8nriFKM)
+El diseño se ha sintetizado principalmente en 1125 LUTs para la lógica combinacional, 339 Flip-Flops para la lógica secuencial y ha hecho uso de 20 bloques de RAM para la memoria y el banco de registros.
 
-Finalmente, en la carpeta "Versiones", se encuentran todas las pruebas y
-versiones del módulo, al ejecutar cada una de estas se puede evidenciar
-la evolución del proceso de desarrollo. Para ejecutar cada una de estas
-versiones se deben seguir los pasos del vídeo.
+## Interacción con aplicaciones externas, implementación y funcionamiento:
+
+https://www.youtube.com/watch?v=UTRQ8nriFKM
+
+
+Finalmente, en la carpeta "Versiones", se encuentran todas las pruebas y versiones del módulo, al ejecutar cada una de estas se puede evidenciar la evolución del proceso de desarrollo. Para ejecutar cada una de estas versiones se deben seguir los pasos del vídeo.
