@@ -106,6 +106,7 @@ Para empezar se requieren los siguientes elementos físicos:
 
 #### Datos importantes:
 **Utilización de recursos:**
+
 <img src="./docs/Readme/5qu2taw4.png"/>
 
 **Frecuencia máxima del reloj y numero de Warnings:**
