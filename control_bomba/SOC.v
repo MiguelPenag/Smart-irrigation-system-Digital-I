@@ -5,7 +5,7 @@ module SOC (
     input             RXD,     // UART receive
     output            TXD,      // UART transmit
     output            TRIGGER,  // trigger sensor
-    input             ECHO      // echo sensor
+(* PULLUP = "TRUE" *) input ECHO // echo sensor
 );
 
   //##########################
