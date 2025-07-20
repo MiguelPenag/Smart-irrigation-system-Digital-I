@@ -71,7 +71,7 @@ Para empezar se requieren los siguientes elementos físicos:
 
 **DiagramaASM**
 
-<img src="./bfemdeob.png"
+<img src="./docs/Readme/bfemdeob.png"
 style="width:7.0625in;height:7.21875in" />
 
 **Diagramas** **RTL**
