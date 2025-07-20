@@ -101,7 +101,7 @@ Para empezar se requieren los siguientes elementos físicos:
 ## Warnings y recursos usados (logs de make log-pnr y log-syn)
 ### Make log-pnr:
 
-[./build/nextpnr-SOC.log](./build/nextpnr-SOC.log])
+[./build/nextpnr-SOC.log](./build/nextpnr-SOC.log)
 
 > nextpnr-SOC.log
 
