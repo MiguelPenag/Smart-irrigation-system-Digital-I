@@ -15,7 +15,7 @@ la razón por la que son importantes se pueden encontrar resaltadas en el
 documento "Estudio.pdf" encontrado en la raíz de este módulo.
 
 ## Arquitectura de comunicaciones:
-<img src="./docs/Readme/ikew1emt.png" />
+<img src="./docs/Readme/Puertospcf.png" />
 
 En la FPGA se definen los pines 135 y 134 como TDX y RDX del protocolo
 UART respectivamente, los cables conectados a estos pines se conectan a
@@ -25,9 +25,13 @@ respectivamente.
 Adicionalmente se definen otros puertos que serán los que se usaran para
 enviar datos al módulo bluetooth hc-06, que son el pin 5 y 4.
 
+<img src="./docs/Readme/ikew1emt.png" />
+
 Los pines 136, 139, 138 y 142 de la FPGA son los asociados a los leds, y
 estos son los que se encargan de encenderlos o apagarlos según los
 valores y la lógica establecida.
+
+<img src="./docs/Readme/3c1o4njp.png" />
 
 El pin 36 del ESP32 será el usado para captar el valor analógico
 proveniente del sensor, a este se conecta el cable correspondiente en el
@@ -36,100 +40,63 @@ sensor.
 Para este módulo, todas las alimentaciones se conectan al 3.3v tanto del
 ESP32 como de la FPGA, y todas las tierras van al mismo punto.
 
-**Elementos**
+## Elementos
 
 Para empezar se requieren los siguientes elementos físicos:
 
-> 1\. FPGA ice40-hx4k-MyStorm-BlackIce-Mx 2. ESP32
->
-> 3\. Módulo bluetooth HC-06
->
-> 4\. Un sensor de conductividad eléctrica analógico 5. 4 resistencias
-> de 1 kOhm
->
-> 6\. 4 leds de colores representativos 7. Jumpers en general
+1. FPGA ice40-hx4k-MyStorm-BlackIce-Mx 
+2. ESP32
+3. Módulo bluetooth HC-06
+4. Un sensor de conductividad eléctrica analógico 
+5. 4 resistencias de 1 kOhm
+6. 4 leds de colores representativos 
+7. Jumpers en general
 
-**Requerimientos** **funcionales**
+## Requerimientos funcionales
 
-> 1\. Medir la conductividad eléctrica del suelo regado en ppm (partes
-> por millón).
->
-> 2\. Cuando el parámetro este por encima o por debajo de los valores
-> críticos se debe encender el led rojo.
->
-> 3\. Cuando el parámetro medido sea menor a 512ppm, se debe encender el
-> led amarilo. 4. Cuando el parámetro medido sea mayor a 704ppm, se debe
-> encender el led azul.
->
-> 5\. Cuando el parámetro medido este entre los valores críticos, se
-> debe encender el led verde. 6. El parámetro medido debe ser enviado
-> vía bluetooth y debe poder ser visto en una
->
-> terminal.
->
-> 7\. El parámetro medido debe ser enviado vía MQTT.
+1. Medir la conductividad eléctrica del suelo regado en ppm (partes por millón).
+2. Cuando el parámetro este por encima o por debajo de los valores críticos se debe encender el led rojo.
+3. Cuando el parámetro medido sea menor a 512ppm, se debe encender el led amarilo.
+4. Cuando el parámetro medido sea mayor a 704ppm, se debe encender el led azul.
+5. Cuando el parámetro medido este entre los valores críticos, se debe encender el led verde.
+6. El parámetro medido debe ser enviado vía bluetooth y debe poder ser visto en una terminal.
+7. El parámetro medido debe ser enviado vía MQTT.
 
-**DiagramaASM**
+## Diagrama ASM
 
-<img src="./docs/Readme/bfemdeob.png"
-style="width:7.0625in;height:7.21875in" />
+<img src="./docs/Readme/bfemdeob.png"/>
 
-**Diagramas** **RTL**
+## Diagramas RTL
+### Diagrama RTL del SoC
 
-**Diagrama** **RTL** **del** **SoC**
+<img src="./docs/Readme/jr23gl0x.png"/>
 
-<img src="./jr23gl0x.png"
-style="width:7.0625in;height:5.14583in" /><img src="./22zmg2ku.png"
-style="width:7.0625in;height:3.07292in" />
+### Diagrama RTL del módulo peripheral_gpio.v
 
-**Diagrama** **RTL** **del** **módulo** **peripheral_gpio.v**
+<img src="./docs/Readme/22zmg2ku.png"/>
 
-**Simulación**
 
-**1.** **Período** **de** **Inicialización** **(0** **ns** **-** **40**
-**ns):**
+## Simulación
+**1. Período de Inicialización (0 ns - 40 ns):**
+* La señal de reset (rst) se mantiene en estado alto.
+- Bajo la condición de reset, la salida "gpio_out" es forzada a "00" en el primer flanco de reloj, confirmando el correcto funcionamiento de la lógica de reinicio.
 
-> La señal de reset (rst) se mantiene en estado
-> alto.<img src="./qjavjs31.png"
-> style="width:7.0625in;height:1.39583in" />
->
-> Bajo la condición de reset, la salida "gpio_out" es forzada a "00" en
-> el primer flanco de reloj, confirmando el correcto funcionamiento de
-> la lógica de reinicio.
+**2. Primera Operación de Escritura (50 ns - 70 ns):**
+- En el instante 50 ns, se inicia un ciclo de escritura activando "cs" y "wr".
+- La dirección (addr) es "0x00" y el dato de entrada (d_in) es "0x00000001".
+- En el flanco de subida del reloj en 60 ns, el módulo captura los dos bits menos significativos de "d_in".
+- **Resultado:** La salida "gpio_out" cambia exitosamente de "00" a "01".
 
-**2.** **Primera** **Operación** **de** **Escritura** **(50** **ns**
-**-** **70** **ns):**
+**3. Segunda Operación de Escritura (90 ns - 110 ns):**
+- En 90 ns, se inicia un nuevo ciclo de escritura en la dirección `0x00` con el dato de entrada "0x00000002".
+- **Resultado:** En el flanco de reloj de 100 ns, la salida "gpio_out" se actualiza correctamente de "01" a "10".
 
-> En el instante 50 ns, se inicia un ciclo de escritura activando "cs" y
-> "wr". La dirección (addr) es "0x00" y el dato de entrada (d_in) es
-> "0x00000001".
->
-> En el flanco de subida del reloj en 60 ns, el módulo captura los dos
-> bits menos significativos de "d_in".
->
-> **Resultado:** La salida "gpio_out" cambia exitosamente de "00" a
-> "01".
+**4. Intento de Escritura Inválida (130 ns - 150 ns):**
+- En 130 ns, se intenta una escritura a una dirección no asignada al módulo ("addr" = "0x1F").
+- El módulo detecta que la dirección no coincide con la suya.
+- **Resultado:** La salida "gpio_out" no sufre ninguna modificación y mantiene su valor de "10", demostrando que la lógica de decodificación de direcciones funciona correctamente.
 
-**3.** **Segunda** **Operación** **de** **Escritura** **(90** **ns**
-**-** **110** **ns):**
-
-> En 90 ns, se inicia un nuevo ciclo de escritura en la dirección 0x00
-> con el dato de entrada "0x00000002".
->
-> **Resultado:** En el flanco de reloj de 100 ns, la salida "gpio_out"
-> se actualiza correctamente de "01" a "10".
-
-**4.** **Intento** **de** **Escritura** **Inválida** **(130** **ns**
-**-** **150** **ns):**
-
-> En 130 ns, se intenta una escritura a una dirección no asignada al
-> módulo ("addr" = "0x1F").
->
-> El módulo detecta que la dirección no coincide con la suya.
->
-> **Resultado:** La salida "gpio_out" no sufre ninguna modificación y
-> mantiene su valor de "10", demostrando que la lógica de decodificación
-> de direcciones funciona correctamente.
+<img src="./docs/Readme/qjavjs31.png"/>
 
 **Warnings** **y** **recursos** **usados** **(logs** **de** **make**
 **log-pnr** **y** **log-syn)**
@@ -138,7 +105,7 @@ style="width:7.0625in;height:3.07292in" />
 
 > nextpnr-SOC.log
 
-**Datos** **importantes:**<img src="./5qu2taw4.png"
+**Datos** **importantes:**<img src="./docs/Readme/5qu2taw4.png"
 style="width:4.60417in;height:1.67708in" /><img src="./qxmisw2p.png"
 style="width:7.0625in;height:1.33333in" />
 
