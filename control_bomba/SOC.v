@@ -118,8 +118,6 @@ perip_hc_sr04 perip_hc_sr04 (
       .d_out(hc_sr04_dout),
       .echo(ECHO),
       .trigger(TRIGGER)
-      
-      
   );
 
   //######################################
