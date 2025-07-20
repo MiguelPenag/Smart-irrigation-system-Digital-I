@@ -15,7 +15,7 @@ la razón por la que son importantes se pueden encontrar resaltadas en el
 documento "Estudio.pdf" encontrado en la raíz de este módulo.
 
 ## Arquitectura de comunicaciones:
-![Puertos en la FPGA]](/docs/Readme/Puertospcf.png)
+<img src="./docs/Readme/ikew1emt.png" />
 
 En la FPGA se definen los pines 135 y 134 como TDX y RDX del protocolo
 UART respectivamente, los cables conectados a estos pines se conectan a
