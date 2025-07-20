@@ -98,10 +98,10 @@ Para empezar se requieren los siguientes elementos físicos:
 
 <img src="./docs/Readme/qjavjs31.png"/>
 
-**Warnings** **y** **recursos** **usados** **(logs** **de** **make**
-**log-pnr** **y** **log-syn)**
+## Warnings y recursos usados (logs de make log-pnr y log-syn)
+### Make log-pnr:
 
-**Make** **log-pnr:**
+[./build/nextpnr-SOC.log](./build/nextpnr-SOC.log])
 
 > nextpnr-SOC.log
 
