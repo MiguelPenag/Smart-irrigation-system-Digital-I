@@ -1,0 +1,159 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+BRAM             0x0000000000000000 0x0000000000002000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+TARGET(elf32-littleriscv)
+
+.text           0x0000000000000000      0x5e8
+                0x0000000000000000                . = ALIGN (0x4)
+ *(.text.startup)
+ .text.startup  0x0000000000000000       0x38 crt0.o
+                0x0000000000000000                _start
+ *(.text*)
+ .text          0x0000000000000038        0x0 crt0.o
+ .text          0x0000000000000038        0x0 loopBackString.o
+ .text.main     0x0000000000000038       0x7c loopBackString.o
+                0x0000000000000038                main
+ .text          0x00000000000000b4        0x0 ./libs/uart.o
+ .text.putChar  0x00000000000000b4       0x6c ./libs/uart.o
+                0x00000000000000b4                putChar
+ .text.putstring
+                0x0000000000000120       0x5c ./libs/uart.o
+                0x0000000000000120                putstring
+ .text.getChar  0x000000000000017c       0x6c ./libs/uart.o
+                0x000000000000017c                getChar
+ .text.getstring
+                0x00000000000001e8       0xa4 ./libs/uart.o
+                0x00000000000001e8                getstring
+ .text          0x000000000000028c        0x0 ./libs/math.o
+ .text.mult_hw  0x000000000000028c       0x88 ./libs/math.o
+                0x000000000000028c                mult_hw
+ .text          0x0000000000000314        0x0 ./libs/time.o
+ .text.wait     0x0000000000000314       0x48 ./libs/time.o
+                0x0000000000000314                wait
+ .text          0x000000000000035c        0x0 ./libs/utilities.o
+ .text.atoi_simple_signed
+                0x000000000000035c       0xf8 ./libs/utilities.o
+                0x000000000000035c                atoi_simple_signed
+ .text.itoa_simple_signed
+                0x0000000000000454      0x16c ./libs/utilities.o
+                0x0000000000000454                itoa_simple_signed
+ *(.rodata*)
+ .rodata        0x00000000000005c0       0x28 ./libs/utilities.o
+
+.sdata2.gp      0x00000000000005e8        0x4
+ .sdata2.gp     0x00000000000005e8        0x4 loopBackString.o
+                0x00000000000005e8                gp
+
+.sdata2.uart_dat
+                0x00000000000005ec        0x4
+ .sdata2.uart_dat
+                0x00000000000005ec        0x4 ./libs/uart.o
+                0x00000000000005ec                uart_dat
+
+.sdata2.uart_cntl
+                0x00000000000005f0        0x4
+ .sdata2.uart_cntl
+                0x00000000000005f0        0x4 ./libs/uart.o
+                0x00000000000005f0                uart_cntl
+
+.sdata2.mult_op_a
+                0x00000000000005f4        0x4
+ .sdata2.mult_op_a
+                0x00000000000005f4        0x4 ./libs/math.o
+                0x00000000000005f4                mult_op_a
+
+.sdata2.mult_op_b
+                0x00000000000005f8        0x4
+ .sdata2.mult_op_b
+                0x00000000000005f8        0x4 ./libs/math.o
+                0x00000000000005f8                mult_op_b
+
+.sdata2.mult_init
+                0x00000000000005fc        0x4
+ .sdata2.mult_init
+                0x00000000000005fc        0x4 ./libs/math.o
+                0x00000000000005fc                mult_init
+
+.sdata2.mult_result
+                0x0000000000000600        0x4
+ .sdata2.mult_result
+                0x0000000000000600        0x4 ./libs/math.o
+                0x0000000000000600                mult_result
+
+.sdata2.mult_done
+                0x0000000000000604        0x4
+ .sdata2.mult_done
+                0x0000000000000604        0x4 ./libs/math.o
+                0x0000000000000604                mult_done
+
+.rela.dyn       0x0000000000000608        0x0
+ .rela.text.startup
+                0x0000000000000608        0x0 crt0.o
+
+.data           0x0000000000000608       0x10
+                0x0000000000000608                . = ALIGN (0x4)
+ *(.data*)
+ .data          0x0000000000000608        0x0 crt0.o
+ .data          0x0000000000000608        0x0 loopBackString.o
+ .data.buffer   0x0000000000000608       0x10 loopBackString.o
+                0x0000000000000608                buffer
+ .data          0x0000000000000618        0x0 ./libs/uart.o
+ .data          0x0000000000000618        0x0 ./libs/math.o
+ .data          0x0000000000000618        0x0 ./libs/time.o
+ .data          0x0000000000000618        0x0 ./libs/utilities.o
+
+.bss            0x0000000000000618        0x0
+                0x0000000000000618                . = ALIGN (0x4)
+                0x0000000000000618                __bss_start = .
+ *(.bss*)
+ .bss           0x0000000000000618        0x0 crt0.o
+ .bss           0x0000000000000618        0x0 loopBackString.o
+ .bss           0x0000000000000618        0x0 ./libs/uart.o
+ .bss           0x0000000000000618        0x0 ./libs/math.o
+ .bss           0x0000000000000618        0x0 ./libs/time.o
+ .bss           0x0000000000000618        0x0 ./libs/utilities.o
+ *(COMMON)
+                0x0000000000000618                __bss_end = .
+
+.stack          0x0000000000000618      0x400
+                0x0000000000000618                _stack_start = .
+                0x0000000000000a18                . = (. + 0x400)
+ *fill*         0x0000000000000618      0x400 
+                0x0000000000000a18                _stack_end = .
+                0x0000000000000a18                _stack_top = .
+LOAD crt0.o
+LOAD loopBackString.o
+LOAD ./libs/uart.o
+LOAD ./libs/math.o
+LOAD ./libs/time.o
+LOAD ./libs/utilities.o
+OUTPUT(firmware.elf elf32-littleriscv)
+
+.riscv.attributes
+                0x0000000000000000       0x1c
+ .riscv.attributes
+                0x0000000000000000       0x1a crt0.o
+ .riscv.attributes
+                0x000000000000001a       0x1c loopBackString.o
+ .riscv.attributes
+                0x0000000000000036       0x1c ./libs/uart.o
+ .riscv.attributes
+                0x0000000000000052       0x1c ./libs/math.o
+ .riscv.attributes
+                0x000000000000006e       0x1c ./libs/time.o
+ .riscv.attributes
+                0x000000000000008a       0x1c ./libs/utilities.o
+
+.comment        0x0000000000000000       0x15
+ .comment       0x0000000000000000       0x15 loopBackString.o
+                                         0x16 (size before relaxing)
+ .comment       0x0000000000000015       0x16 ./libs/uart.o
+ .comment       0x0000000000000015       0x16 ./libs/math.o
+ .comment       0x0000000000000015       0x16 ./libs/time.o
+ .comment       0x0000000000000015       0x16 ./libs/utilities.o
