@@ -75,6 +75,10 @@ Para empezar se requieren los siguientes elementos físicos:
 
 <img src="./docs/Readme/22zmg2ku.png"/>
 
+## Diagrama de bloques
+
+<img src="./docs/Readme/bloques.png"/>
+
 
 ## Simulación
 **1. Período de Inicialización (0 ns - 40 ns):**
