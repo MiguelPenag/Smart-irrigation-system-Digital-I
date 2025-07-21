@@ -1,0 +1,20 @@
+# Clock y reset
+set_io clk     1
+set_io reset   2
+
+# Sensor DHT11
+set_io DHT11   3
+
+# Display de 7 segmentos (A-G)
+set_io seg[0]  4
+set_io seg[1]  7
+set_io seg[2]  8
+set_io seg[3]  9
+set_io seg[4] 10
+set_io seg[5] 11
+set_io seg[6] 12
+
+# Anodos (selección del dígito activo)
+set_io anode[0] 15
+set_io anode[1] 16
+
