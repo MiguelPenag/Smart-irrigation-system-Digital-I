@@ -1,7 +1,7 @@
 #include "libs/time.h"
 #include "libs/uart.h"
 #include <stdint.h>
-#include "utilities.c"
+#include "libs/utilities.h"
 
 // Definición de direcciones de memoria (equivalentes a las constantes en ASM)
 #define IO_BASE 0x400000
