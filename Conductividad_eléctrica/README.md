@@ -2,6 +2,10 @@
 <!-- :set spell! -->
 <!-- :MarkdownPreview -->
 <!-- :GenTocMarked -->
+# Integrantes
+- Pablo De Jesus Arcila Mora
+- Marco Alejandro Morales Pantoja
+- Andres Felipe Osorio Ortiz
 
 # Sensor de conductividad eléctrica "TDS"
 
