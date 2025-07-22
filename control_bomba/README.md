@@ -24,7 +24,7 @@ Objetivos especificos
 
 
 ##
-**IMAGEN FPGA**
+<img width="765" height="472" alt="image" src="https://github.com/user-attachments/assets/5a1a0bf8-8cbf-4816-9f3c-431c2e2494b6" />
 
 El monitoreo del nivel de agua es esencial para la automatización en riegos, acueductos, y control de fluidos en general. Este proyecto busca integrar tecnologías digitales con procesamiento distribuido para ofrecer una solución educativa y funcional para este tipo de monitoreo.
 
