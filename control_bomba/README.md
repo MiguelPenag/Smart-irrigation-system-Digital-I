@@ -24,7 +24,7 @@ Objetivos especificos
 
 
 ##
-![Imagen de WhatsApp 2025-07-22 a las 15 52 48_e40314db](https://github.com/user-attachments/assets/a3e37eaf-916b-4693-82fe-e5bc53eb9cbc)
+![333](https://github.com/user-attachments/assets/f022482a-fa40-47e7-adc8-3026b45c0693)
 
 
 El monitoreo del nivel de agua es esencial para la automatización en riegos, acueductos, y control de fluidos en general. Este proyecto busca integrar tecnologías digitales con procesamiento distribuido para ofrecer una solución educativa y funcional para este tipo de monitoreo.
