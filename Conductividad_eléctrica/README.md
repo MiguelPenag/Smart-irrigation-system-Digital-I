@@ -172,7 +172,7 @@ El diseño se ha sintetizado principalmente en 1125 LUTs para la lógica combina
 
 ### Etapa de error cuando el valor medido es mayor a 704 ppm:
 
-<img src="./docs/Readme/FalloArriba.jpg"/>
+<img src="./docs/Readme/FallaArriba.jpg"/>
 
 ### Etapa cuando el valor medido está entre 512ppm y 704ppm:
 
