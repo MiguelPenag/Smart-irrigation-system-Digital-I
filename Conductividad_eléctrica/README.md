@@ -160,6 +160,26 @@ Estas advertencias indican que las salidas de varios periféricos que no están 
 
 El diseño se ha sintetizado principalmente en 1125 LUTs para la lógica combinacional, 339 Flip-Flops para la lógica secuencial y ha hecho uso de 20 bloques de RAM para la memoria y el banco de registros.
 
+## Montaje y etapas:
+
+### Montaje:
+
+<img src="./docs/Readme/Montaje.jpg"/>
+
+### Etapa de error cuando el valor medido es menor a 512 ppm:
+
+<img src="./docs/Readme/FalloAbajo.jpg"/>
+
+### Etapa de error cuando el valor medido es mayor a 704 ppm:
+
+<img src="./docs/Readme/FalloArriba.jpg"/>
+
+### Etapa cuando el valor medido está entre 512ppm y 704ppm:
+
+<img src="./docs/Readme/TodoOk.jpg"/>
+
+
+
 ## Interacción con aplicaciones externas, implementación y funcionamiento:
 
 https://www.youtube.com/watch?v=UTRQ8nriFKM
