@@ -329,7 +329,7 @@ Simulaciones:
 Archivos fuentes del SoC, simulaciones, etc.
 
 
-Medir la distancia sensor 
+Medición de la distancia "sensor "
 
 ![Imagen de WhatsApp 2025-07-21 a las 18 38 21_c0e87ff0](https://github.com/user-attachments/assets/9fc2444b-c08e-4e10-88e3-dfffe0a1d6a5)
 
